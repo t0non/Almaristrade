@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy-900: #122239;
+    --color-navy-800: #1E3557;
+    --color-gold-600: #C5870E;
+    --color-ivory-50: #F7F4EC;
+    --color-graphite-900: #20242A;
+    --color-gray-600: #666B72;
+    --color-border-200: #DDD9D0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-white text-graphite-900 font-interface leading-relaxed overflow-x-hidden;
+  }
+
+  /* Accessibility focus outline */
+  :focus-visible {
+    outline: 2px solid var(--color-gold-600) !important;
+    outline-offset: 3px !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-navy-800 text-white font-interface text-sm font-semibold tracking-wider uppercase rounded-sm border border-navy-800 transition-all duration-300 hover:bg-navy-900 hover:border-navy-900 hover:-translate-y-0.5;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gold-600 text-white font-interface text-sm font-semibold tracking-wider uppercase rounded-sm border border-gold-600 transition-all duration-300 hover:bg-gold-500 hover:border-gold-500 hover:-translate-y-0.5;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent text-white border border-white/30 font-interface text-sm font-semibold tracking-wider uppercase rounded-sm transition-all duration-300 hover:border-gold-600 hover:text-gold-600 hover:bg-white/5;
+  }
+
+  .btn-link-editorial {
+    @apply inline-flex items-center gap-2 font-interface text-sm font-semibold text-navy-800 border-b border-gold-600 pb-0.5 transition-colors hover:text-gold-600;
+  }
+
+  .overline {
+    @apply font-interface text-xs font-semibold uppercase tracking-[0.25em] text-gold-600 inline-flex items-center gap-3 mb-3;
+  }
+
+  .overline::before {
+    content: '';
+    @apply inline-block w-6 h-[1px] bg-gold-600;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-28;
+  }
+
+  .container-custom {
+    @apply w-full max-w-container mx-auto px-6 md:px-8;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+/* ── Google Translate: esconder UI nativa ────────────────────────── */
+body { top: 0 !important; }
+.skiptranslate, #goog-gt-tt, .goog-te-banner-frame { display: none !important; }
+
+/* ── Hero animations ─────────────────────────────────────────────── */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-overline {
+    animation: heroFadeIn 0.6s ease forwards;
+    animation-delay: 0.15s;
+    opacity: 0;
+  }
+  .hero-headline {
+    animation: heroRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.35s;
+    opacity: 0;
+  }
+  .hero-body {
+    animation: heroRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.55s;
+    opacity: 0;
+  }
+  .hero-ctas {
+    animation: heroRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.75s;
+    opacity: 0;
+  }
+  .hero-scroll {
+    animation: heroFadeIn 1s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+  }
+}
+
+/* ── Typography Application ──────────────────────────────────────── */
+body {
+  font-family: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, .display-title, .editorial-title {
+  font-family: var(--font-display), "Cormorant Garamond", Georgia, serif;
+}
+
+button, input, textarea, select, nav, table {
+  font-family: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+}
+
+
